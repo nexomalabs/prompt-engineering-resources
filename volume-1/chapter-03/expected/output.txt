@@ -1,0 +1,28 @@
+Corpus: 600 headlines, 3 sections (bundled)
+Training headlines: 450
+Test headlines:     150
+Vocabulary size:    56
+
+Test accuracy: 0.940
+
+Classification report:
+              precision    recall  f1-score   support
+
+      health      0.923     0.960     0.941        50
+    politics      0.939     0.920     0.929        50
+      sports      0.959     0.940     0.949        50
+
+    accuracy                          0.940       150
+   macro avg      0.940     0.940     0.940       150
+weighted avg      0.940     0.940     0.940       150
+
+Confusion matrix (rows = actual, columns = predicted):
+                health   politics     sports
+health              48          1          1
+politics             3         46          1
+sports               1          2         47
+
+Most informative terms per section:
+  health     patient, therapy, clinic, referral, screening
+  politics   policy, reform, panel, budget, appeal
+  sports     season, contract, training, schedule, performance

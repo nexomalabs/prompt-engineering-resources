@@ -1,0 +1,15 @@
+[project]
+name = "aiae-vol1-lab05"
+version = "1.0.0"
+description = "Applied AI Engineering — Volume I, Lab 5: Convolution and Image Classification"
+requires-python = ">=3.12"
+dependencies = ["numpy>=2.0", "scikit-learn>=1.5"]
+
+[dependency-groups]
+dev = ["pytest>=8.0"]
+# Part B only. Not installed by default: torch is a large dependency and the
+# ResNet demo is not part of the CI-gated suite.
+resnet = ["torch>=2.4", "torchvision>=0.19", "pillow>=10.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,23 @@
+{
+  "request": {
+    "max_tokens": 600,
+    "messages": [
+      {
+        "content": "Classify the intent of the user message.",
+        "role": "system"
+      },
+      {
+        "content": "My invoice from last month has the wrong address and I need it corrected before I can pay.",
+        "role": "user"
+      }
+    ],
+    "model": "gpt-4o-mini",
+    "temperature": 0.0
+  },
+  "response": {
+    "completion_tokens": 55,
+    "content": "The intent of the user message is a complaint combined with a request. The user is reporting an incorrect address on their invoice and is asking for it to be corrected before they will complete payment. This falls under billing support.",
+    "prompt_tokens": 42,
+    "total_tokens": 97
+  }
+}

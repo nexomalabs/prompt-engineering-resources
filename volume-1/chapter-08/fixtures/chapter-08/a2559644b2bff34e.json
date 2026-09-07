@@ -1,0 +1,20 @@
+{
+  "request": {
+    "max_tokens": 100,
+    "messages": [
+      {
+        "content": "In exactly one sentence, describe the main difference between a generative model and a discriminative model.",
+        "role": "user"
+      }
+    ],
+    "model": "gpt-4o-mini",
+    "seed": 0,
+    "temperature": 1.4
+  },
+  "response": {
+    "completion_tokens": 51,
+    "content": "It is a bit like the difference between a forger and a detective: the generative model is the forger, learning to produce convincing new examples, while the discriminative model is the detective, learning to tell one class from another.",
+    "prompt_tokens": 24,
+    "total_tokens": 75
+  }
+}

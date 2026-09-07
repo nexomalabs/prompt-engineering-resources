@@ -1,0 +1,19 @@
+{
+  "request": {
+    "max_tokens": 500,
+    "messages": [
+      {
+        "content": "Alice can complete a project in 12 days. Bob can complete the same project in 8 days. If they work together, how many days will it take to complete the project? Round to two decimal places.\n\nThink step by step before giving your final answer.",
+        "role": "user"
+      }
+    ],
+    "model": "gpt-4o-mini",
+    "temperature": 0.0
+  },
+  "response": {
+    "completion_tokens": 73,
+    "content": "Let me work through this step by step.\n\nAlice's rate: 1/12 of the project per day.\nBob's rate: 1/8 of the project per day.\nCombined rate: 1/12 + 1/8 = 2/24 + 3/24 = 5/24 of the project per day.\nTime together: 1 / (5/24) = 24/5 = 4.80 days.\n\nFinal answer: 4.80 days",
+    "prompt_tokens": 77,
+    "total_tokens": 150
+  }
+}

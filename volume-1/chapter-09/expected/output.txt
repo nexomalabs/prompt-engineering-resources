@@ -1,0 +1,82 @@
+[OpenAI: replaying recorded fixtures, no API key needed]
+========================================================================
+Lab 9: Comparing Standard LLM vs. Reasoning Model
+========================================================================
+
+------------------------------------------------------------------------
+Problem P1: Train meeting problem
+Expected answer contains: 3:13 PM
+------------------------------------------------------------------------
+
+[1] gpt-4o-mini | direct answer
+    The trains will meet at approximately 2:39 PM.
+    correct=False  tokens=110
+
+[2] gpt-4o-mini | chain-of-thought
+    Let me work through this step by step.
+
+Train A departs Chicago at 9:00 AM at 60 mph.
+Train B departs New York at 10:00 AM at 80 mph.
+By 10:00 AM, Train A has a...
+    correct=True  tokens=233
+
+[3] o1-mini | reasoning
+    Setting up the problem: Train A travels alone from 9:00 to 10:00 AM, covering 60 miles. At 10:00 AM the remaining gap is 790 - 60 = 730 miles, closing at 60 + 8...
+    correct=True  reasoning_tokens=984  total_tokens=1207
+
+------------------------------------------------------------------------
+Problem P2: Compound probability
+Expected answer contains: 2/15
+------------------------------------------------------------------------
+
+[1] gpt-4o-mini | direct answer
+    The probability is 4/25.
+    correct=False  tokens=78
+
+[2] gpt-4o-mini | chain-of-thought
+    Let me work through this step by step.
+
+P(first ball red) = 4/10.
+Without replacement, P(second ball red | first red) = 3/9.
+P(both red) = 4/10 * 3/9 = 12/90.
+S...
+    correct=False  tokens=133
+
+[3] o1-mini | reasoning
+    P(both red) without replacement = C(4,2) / C(10,2) = 6 / 45 = 2/15. Cross-checking with sequential probability: (4/10) * (3/9) = 12/90 = 2/15. Both methods agre...
+    correct=True  reasoning_tokens=438  total_tokens=544
+
+------------------------------------------------------------------------
+Problem P3: Work rate problem
+Expected answer contains: 4.80 days
+------------------------------------------------------------------------
+
+[1] gpt-4o-mini | direct answer
+    Working together, it will take 10.00 days.
+    correct=False  tokens=84
+
+[2] gpt-4o-mini | chain-of-thought
+    Let me work through this step by step.
+
+Alice's rate: 1/12 of the project per day.
+Bob's rate: 1/8 of the project per day.
+Combined rate: 1/12 + 1/8 = 2/24 + 3/...
+    correct=True  tokens=150
+
+[3] o1-mini | reasoning
+    Combined work rate = 1/12 + 1/8. Common denominator 24: 2/24 + 3/24 = 5/24 of the project per day together. Time required = 1 / (5/24) = 24/5 = 4.8 days exactly...
+    correct=True  reasoning_tokens=528  total_tokens=651
+
+========================================================================
+Accuracy over 3 problems:
+  direct     0/3
+  cot        2/3
+  reasoning  3/3
+
+The direct condition gives an immediate, confident, wrong answer on every
+problem here — it never shows work, so it never catches its own mistakes.
+Chain-of-thought recovers most of them by making the model produce
+intermediate steps it can be checked against, but a step can still contain
+an arithmetic slip that CoT prompting alone does not catch. The reasoning
+model gets every problem right, at the cost of far more tokens and latency
+spent on hidden reasoning before the visible answer.

@@ -1,0 +1,20 @@
+Dataset: two interleaved spirals, 600 points
+Training points: 450
+Test points:     150
+
+Baseline — softmax regression, no hidden layer:
+  test accuracy 0.507
+
+Two-layer network, 32 hidden units:
+  epoch    1   loss 0.6795   train acc 0.509
+  epoch  100   loss 0.2956   train acc 0.909
+  epoch  200   loss 0.1804   train acc 0.940
+  epoch  300   loss 0.1239   train acc 0.978
+  epoch  400   loss 0.0846   train acc 0.989
+
+Final training loss: 0.0846
+Train accuracy:      0.989
+Test accuracy:       0.980
+
+The hidden layer is what makes the difference. A linear model cannot
+separate interleaved spirals no matter how long it trains.

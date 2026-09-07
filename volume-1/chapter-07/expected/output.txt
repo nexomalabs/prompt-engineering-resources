@@ -1,0 +1,64 @@
+Training BPE on a small corpus
+  corpus: 47 words, 19 distinct
+
+ merges   vocab   tokens for the sample
+---------------------------------------
+      0      17                      32
+      5      21                      27
+     10      21                      19
+     20      23                      13
+     40      27                       5
+---------------------------------------
+More merges means a larger vocabulary and fewer tokens per text.
+That trade-off is the only dial a tokenizer really has.
+
+First 12 merges learned (most frequent pair first):
+   1. 'e' + 's' -> 'es'
+   2. 'i' + 'n' -> 'in'
+   3. 'e' + 'r' -> 'er'
+   4. 'd' + 'es' -> 'des'
+   5. 'des' + 'i' -> 'desi'
+   6. 'desi' + 'g' -> 'desig'
+   7. 'desig' + 'n' -> 'design'
+   8. 'e' + '</w>' -> 'e</w>'
+   9. 'h' + 'e</w>' -> 'he</w>'
+  10. 't' + 'he</w>' -> 'the</w>'
+  11. 'e' + 'er' -> 'eer'
+  12. 'e' + 'n' -> 'en'
+
+How the same trained tokenizer handles different input:
+input type          chars  tokens  chars/token
+----------------------------------------------
+common English         31       5         6.20
+repeated words         19       5         3.80
+unseen words           28      29         0.97
+numbers                21      22         0.95
+whitespace             16       2         8.00
+punctuation            34      12         2.83
+----------------------------------------------
+
+Text the tokenizer was trained on compresses well. Unseen words fall
+back to near one token per character, and numbers fragment badly.
+This is why a prompt in a rare language can cost several times more
+than the same content in English.
+
+What that costs, for the same amount of text
+----------------------------------------------------------
+call                  in  cached     out        USD
+--------------------------------------------------
+common English      3226       0     300   0.014178
+unseen words       20714       0     300   0.066642
+--------------------------------------------------
+TOTAL                                      0.080820
+
+Same 20,000 characters. unseen words costs 4.7x more than common English,
+because it needs 6.4x the tokens to say it.
+At 50,000 calls a day the difference is $2,623.
+
+Token count is not a detail. It is the unit you are billed in, and
+it depends on what the tokenizer was trained on rather than on how
+much you actually said.
+
+Round-trip check:
+  common English     ok
+  unseen words       ok

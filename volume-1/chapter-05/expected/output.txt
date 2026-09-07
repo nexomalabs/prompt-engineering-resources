@@ -1,0 +1,26 @@
+Dataset: 1797 handwritten digits, 8x8 pixels, 10 classes
+
+What each kernel responds to, on the first digit:
+  vertical edge    mean activation   8.69   peak  40.00
+  horizontal edge  mean activation   5.27   peak  40.00
+  blur             mean activation   4.30   peak   9.11
+  sharpen          mean activation  10.03   peak  48.00
+
+dataset                    raw dims   raw acc  conv dims  conv acc
+------------------------------------------------------------------
+centred 8x8                      64     0.967         64     0.978
+shifted on 12x12 canvas         144     0.309        144     0.707
+------------------------------------------------------------------
+
+Centred digits: the two are within noise of each other.
+  The digits never move, so a pixel index is already a reliable feature.
+  Convolution has little to add when position is fixed.
+
+Shifted digits: convolutional features lead by +0.398.
+  Raw pixels fall by 0.658; convolutional features fall by 0.271.
+
+That difference is what convolution buys. The same kernel is applied at
+every position and pooling discards exactly where it fired, so the
+features barely change when the digit moves. A raw-pixel classifier has
+to learn every position separately and mostly fails. Real images are
+never perfectly centred, which is why CNNs displaced pixel classifiers.

@@ -1,0 +1,58 @@
+Sentence: the cat sat on the mat
+Tokens: 6   d_model: 8
+
+==============================================================
+Head 1 — content matching (Wq = Wk = identity)
+==============================================================
+          the   cat   sat    on   the   mat
+   the     ==                      ==      
+   cat           %%                        
+   sat                 @@                  
+    on           --          ++            
+   the     ==                      ==      
+   mat                                   @@
+
+'the' at position 0 attends to position 4 with weight 0.482
+Identical words have identical embeddings, so a content-matching head
+links the two occurrences of 'the'. This is the mechanism behind
+induction heads, which copy from earlier matching context.
+
+==============================================================
+Head 2 — previous token (built from positional encoding)
+==============================================================
+          the   cat   sat    on   the   mat
+   the     @@                              
+   cat     @@                              
+   sat           %%                        
+    on                 %%                  
+   the                       %%            
+   mat                             %%      
+
+Mean weight on the immediately preceding token: 0.886
+Positional information alone produces a positional pattern. Real
+models learn heads that look very like this one.
+
+==============================================================
+Causal masking
+==============================================================
+          the   cat   sat    on   the   mat
+   the     @@                              
+   cat           @@                        
+   sat                 @@                  
+    on           --          ++            
+   the     ==                      ==      
+   mat                                   @@
+
+Total weight on future tokens: 0.000000
+A decoder cannot attend forwards. That constraint is what makes
+next-token prediction a valid training objective.
+
+==============================================================
+Why divide by sqrt(d_k)
+==============================================================
+  scaled    mean row entropy 2.146 bits   max weight 0.715
+  unscaled  mean row entropy 0.131 bits   max weight 1.000
+
+At d_k = 64 the unscaled dot products are large, softmax saturates
+towards one-hot, and the gradient through it nearly vanishes. Scaling
+keeps attention distributed and trainable.

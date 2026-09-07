@@ -1,0 +1,20 @@
+{
+  "request": {
+    "max_tokens": 100,
+    "messages": [
+      {
+        "content": "In exactly one sentence, describe the main difference between a generative model and a discriminative model.",
+        "role": "user"
+      }
+    ],
+    "model": "gpt-4o-mini",
+    "seed": 1,
+    "temperature": 1.4
+  },
+  "response": {
+    "completion_tokens": 48,
+    "content": "Generative approaches aim to model the full joint distribution of inputs and labels so they can sample brand new data points, while discriminative approaches model the label given the input directly, focusing only on drawing accurate boundaries.",
+    "prompt_tokens": 24,
+    "total_tokens": 72
+  }
+}

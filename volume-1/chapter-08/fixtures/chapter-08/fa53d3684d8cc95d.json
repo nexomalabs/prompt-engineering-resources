@@ -1,0 +1,20 @@
+{
+  "request": {
+    "max_tokens": 100,
+    "messages": [
+      {
+        "content": "In exactly one sentence, describe the main difference between a generative model and a discriminative model.",
+        "role": "user"
+      }
+    ],
+    "model": "gpt-4o-mini",
+    "seed": 4,
+    "temperature": 1.4
+  },
+  "response": {
+    "completion_tokens": 40,
+    "content": "The generative model wants to understand everything about how the data was produced, while the discriminative model just wants the single best answer to the question of which class this is.",
+    "prompt_tokens": 24,
+    "total_tokens": 64
+  }
+}

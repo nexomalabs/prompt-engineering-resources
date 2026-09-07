@@ -1,0 +1,15 @@
+[project]
+name = "aiae-vol1-lab06"
+version = "1.0.0"
+description = "Applied AI Engineering — Volume I, Lab 6: Visualizing Attention Weights"
+requires-python = ">=3.12"
+dependencies = ["numpy>=2.0"]
+
+[dependency-groups]
+dev = ["pytest>=8.0"]
+# Part B only. Not installed by default: torch and transformers are large and
+# the BERT demo is not part of the CI-gated suite.
+bert = ["torch>=2.4", "transformers>=4.44"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

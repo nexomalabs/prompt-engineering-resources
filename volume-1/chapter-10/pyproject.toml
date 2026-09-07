@@ -1,0 +1,13 @@
+[project]
+name = "aiae-vol1-lab10"
+version = "1.0.0"
+description = "Applied AI Engineering — Volume I, Lab 10: Writing Your First Professional Prompts (Capstone)"
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = ["pytest>=8.0"]
+live = ["openai>=1.40"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

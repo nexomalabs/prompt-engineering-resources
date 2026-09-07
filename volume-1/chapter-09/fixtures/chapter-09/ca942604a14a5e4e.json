@@ -1,0 +1,19 @@
+{
+  "request": {
+    "max_tokens": 500,
+    "messages": [
+      {
+        "content": "A train leaves Chicago at 9:00 AM traveling toward New York at 60 mph. A second train leaves New York at 10:00 AM traveling toward Chicago at 80 mph. The cities are 790 miles apart. At what time do the two trains meet? Give your answer as a specific time (e.g., 3:13 PM).\n\nGive only the final answer with no explanation.",
+        "role": "user"
+      }
+    ],
+    "model": "gpt-4o-mini",
+    "temperature": 0.0
+  },
+  "response": {
+    "completion_tokens": 11,
+    "content": "The trains will meet at approximately 2:39 PM.",
+    "prompt_tokens": 99,
+    "total_tokens": 110
+  }
+}

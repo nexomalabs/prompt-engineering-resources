@@ -1,0 +1,23 @@
+{
+  "request": {
+    "max_tokens": 600,
+    "messages": [
+      {
+        "content": "Extract the action items from this meeting note.",
+        "role": "system"
+      },
+      {
+        "content": "Meeting Notes \u2014 Project Phoenix Kickoff\nDate: July 24, 2026\nAttendees: Sarah Chen (PM), David Okafor (Engineering Lead), Maria Santos (Design)\n\nKey decisions:\n- Launch target: October 15, 2026\n- MVP scope: Authentication, dashboard, and reporting modules only\n- Design system: Adopt Nexoma Design System v2\n\nAction items:\n- David to provide technical architecture draft by August 1\n- Maria to share initial wireframes by July 31\n- Sarah to schedule weekly sync starting July 28",
+        "role": "user"
+      }
+    ],
+    "model": "gpt-4o-mini",
+    "temperature": 0.0
+  },
+  "response": {
+    "completion_tokens": 49,
+    "content": "Here are the action items from the meeting:\n1. David to provide technical architecture draft by August 1\n2. Maria to share initial wireframes by July 31\n3. Sarah to schedule weekly sync starting July 28",
+    "prompt_tokens": 119,
+    "total_tokens": 168
+  }
+}

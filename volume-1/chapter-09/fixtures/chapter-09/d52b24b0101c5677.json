@@ -1,0 +1,19 @@
+{
+  "request": {
+    "max_tokens": 500,
+    "messages": [
+      {
+        "content": "A bag contains 4 red balls and 6 blue balls. You draw two balls without replacement. What is the probability that both balls are red? Express your answer as a fraction in lowest terms.\n\nGive only the final answer with no explanation.",
+        "role": "user"
+      }
+    ],
+    "model": "gpt-4o-mini",
+    "temperature": 0.0
+  },
+  "response": {
+    "completion_tokens": 5,
+    "content": "The probability is 4/25.",
+    "prompt_tokens": 73,
+    "total_tokens": 78
+  }
+}

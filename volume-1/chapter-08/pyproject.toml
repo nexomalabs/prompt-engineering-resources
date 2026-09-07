@@ -1,0 +1,14 @@
+[project]
+name = "aiae-vol1-lab08"
+version = "1.0.0"
+description = "Applied AI Engineering — Volume I, Lab 8: Exploring Generative Models"
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = ["pytest>=8.0"]
+# Only needed for NEXOMA_LAB_MODE=record or =live against the real API.
+live = ["openai>=1.40"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

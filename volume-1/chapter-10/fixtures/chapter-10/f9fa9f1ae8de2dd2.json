@@ -1,0 +1,19 @@
+{
+  "request": {
+    "max_tokens": 600,
+    "messages": [
+      {
+        "content": "Write a product description for an AI-powered note-taking app.\n\nRequirements:\n- Maximum 40 words. Count carefully. Do not exceed 40 words.\n- Lead with the primary benefit.\n- Include one specific feature.\n- End with a call to action.\n- Do not include a headline \u2014 start directly with the description text.",
+        "role": "user"
+      }
+    ],
+    "model": "gpt-4o-mini",
+    "temperature": 0.0
+  },
+  "response": {
+    "completion_tokens": 51,
+    "content": "Capture every idea instantly with AI transcription that organizes your notes automatically as you speak. Search by topic and meaning, not just keywords, and find what matters in seconds. Download Notely today and never lose a thought again.",
+    "prompt_tokens": 78,
+    "total_tokens": 129
+  }
+}

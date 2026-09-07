@@ -1,0 +1,23 @@
+{
+  "request": {
+    "max_tokens": 600,
+    "messages": [
+      {
+        "content": "You are an intent classification API. Classify the user's message and return ONLY a JSON object with no additional text, prose, or code fences.\n\nSchema:\n{\n  \"intent\": \"question\" | \"complaint\" | \"request\" | \"feedback\" | \"other\",\n  \"confidence\": \"high\" | \"medium\" | \"low\",\n  \"topic\": string\n}\n\nBegin your response with { and end with }.",
+        "role": "system"
+      },
+      {
+        "content": "My invoice from last month has the wrong address and I need it corrected before I can pay.",
+        "role": "user"
+      }
+    ],
+    "model": "gpt-4o-mini",
+    "temperature": 0.0
+  },
+  "response": {
+    "completion_tokens": 9,
+    "content": "{\"intent\": \"request\", \"confidence\": \"high\", \"topic\": \"invoice correction\"}",
+    "prompt_tokens": 103,
+    "total_tokens": 112
+  }
+}

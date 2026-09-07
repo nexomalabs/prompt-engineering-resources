@@ -1,0 +1,14 @@
+[project]
+name = "aiae-vol1-lab07"
+version = "1.0.0"
+description = "Applied AI Engineering — Volume I, Lab 7: Exploring Tokenization"
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = ["pytest>=8.0"]
+# Part B only. tiktoken downloads vocabulary files, so it is not CI-gated.
+tiktoken = ["tiktoken>=0.7"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,19 @@
+{
+  "request": {
+    "max_tokens": 1500,
+    "messages": [
+      {
+        "content": "Alice can complete a project in 12 days. Bob can complete the same project in 8 days. If they work together, how many days will it take to complete the project? Round to two decimal places.",
+        "role": "user"
+      }
+    ],
+    "model": "o1-mini"
+  },
+  "response": {
+    "completion_tokens": 586,
+    "content": "Combined work rate = 1/12 + 1/8. Common denominator 24: 2/24 + 3/24 = 5/24 of the project per day together. Time required = 1 / (5/24) = 24/5 = 4.8 days exactly, which rounds to 4.80 days. The answer is 4.80 days.",
+    "prompt_tokens": 65,
+    "reasoning_tokens": 528,
+    "total_tokens": 651
+  }
+}

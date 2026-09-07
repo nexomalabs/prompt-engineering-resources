@@ -1,0 +1,23 @@
+{
+  "request": {
+    "max_tokens": 600,
+    "messages": [
+      {
+        "content": "You are a financial analyst writing a one-paragraph executive summary.\n\nSummarize the following financial report extract in exactly 3 sentences.\nSentence 1: State the revenue and revenue growth.\nSentence 2: State net income and the key expense driver.\nSentence 3: Comment on cash position and headcount change.\n\nUse professional financial language. Do not add analysis not present in the data.",
+        "role": "system"
+      },
+      {
+        "content": "The Q2 revenue for Nexoma Labs was $4.2M, up 18% year-over-year. Operating expenses were $3.1M, driven primarily by R&D ($1.8M) and sales and marketing ($0.9M). Net income was $1.1M, compared to $0.6M in Q2 of last year. Cash on hand is $6.4M. Headcount grew from 42 to 51.",
+        "role": "user"
+      }
+    ],
+    "model": "gpt-4o-mini",
+    "temperature": 0.0
+  },
+  "response": {
+    "completion_tokens": 61,
+    "content": "Nexoma Labs achieved Q2 revenue of $4.2M, representing 18% year-over-year growth. Net income reached $1.1M, with R&D as the primary expense driver at $1.8M of the $3.1M in total operating expenses. Cash on hand stands at $6.4M, and headcount expanded from 42 to 51 employees.",
+    "prompt_tokens": 150,
+    "total_tokens": 211
+  }
+}

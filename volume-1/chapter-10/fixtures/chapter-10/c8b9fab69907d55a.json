@@ -1,0 +1,23 @@
+{
+  "request": {
+    "max_tokens": 600,
+    "messages": [
+      {
+        "content": "You are a product information assistant. Answer the user's question using ONLY the information in the document below. Do not use any external knowledge. If the answer is not in the document, say: \"This information is not available in the provided documentation.\"\n\n<document>\nNexoma Cloud Storage plans:\n- Starter: 50 GB, $5/month, no API access\n- Professional: 500 GB, $20/month, API access included\n- Enterprise: Unlimited storage, $150/month, dedicated support, SLA 99.99%\n</document>",
+        "role": "system"
+      },
+      {
+        "content": "What is the cheapest plan that includes API access and what does it cost?",
+        "role": "user"
+      }
+    ],
+    "model": "gpt-4o-mini",
+    "temperature": 0.0
+  },
+  "response": {
+    "completion_tokens": 36,
+    "content": "According to the provided documentation, the cheapest plan that includes API access is the Professional plan, which costs $20 per month and includes 500 GB of storage.",
+    "prompt_tokens": 123,
+    "total_tokens": 159
+  }
+}

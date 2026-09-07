@@ -1,0 +1,73 @@
+[OpenAI: replaying recorded fixtures, no API key needed]
+========================================================================
+Lab 10: Writing Your First Professional Prompts
+Model: gpt-4o-mini
+========================================================================
+
+### Exercise 1: Ambiguity — Document Summarization
+------------------------------------------------------------------------
+[WEAK]
+Nexoma Labs had a strong second quarter. Revenue and net income were both up compared to last year, expenses grew mainly due to R&D and marketing spending, and the company added several new employees 
+
+[STRONG]
+Nexoma Labs achieved Q2 revenue of $4.2M, representing 18% year-over-year growth. Net income reached $1.1M, with R&D as the primary expense driver at $1.8M of the $3.1M in total operating expenses. Ca
+
+Check: {'weak_sentences': 2, 'strong_sentences': 3, 'demonstrates_fix': True}
+Fix demonstrated: yes
+
+### Exercise 2: Format — Intent Classification (JSON)
+------------------------------------------------------------------------
+[WEAK]
+The intent of the user message is a complaint combined with a request. The user is reporting an incorrect address on their invoice and is asking for it to be corrected before they will complete paymen
+
+[STRONG]
+{"intent": "request", "confidence": "high", "topic": "invoice correction"}
+
+Check: {'weak_is_valid_json': False, 'strong_is_valid_json': True, 'demonstrates_fix': True}
+Fix demonstrated: yes
+
+### Exercise 3: Hallucination — Document-Grounded Q&A
+------------------------------------------------------------------------
+[WEAK]
+The cheapest plan with API access is typically the Standard plan, priced around $12.99 per month, which usually includes 250 GB of storage and basic API rate limits.
+
+[STRONG]
+According to the provided documentation, the cheapest plan that includes API access is the Professional plan, which costs $20 per month and includes 500 GB of storage.
+
+Check: {'strong_is_grounded_in_document': True, 'weak_did_not_happen_to_match_the_real_answer': True, 'demonstrates_fix': True}
+Fix demonstrated: yes
+
+### Exercise 4: Constraint Violation — Length-Limited Description
+------------------------------------------------------------------------
+[WEAK]
+Notely: Your Second Brain, Powered by AI
+
+Meet Notely, the AI-powered note-taking app that transforms how you capture and organize ideas. With intelligent transcription, automatic tagging, and smart s
+
+[STRONG]
+Capture every idea instantly with AI transcription that organizes your notes automatically as you speak. Search by topic and meaning, not just keywords, and find what matters in seconds. Download Note
+
+Check: {'weak_word_count': 76, 'strong_word_count': 38, 'strong_within_limit': True, 'weak_exceeds_limit': True, 'demonstrates_fix': True}
+Fix demonstrated: yes
+
+### Exercise 5: Structured Extraction — Meeting Notes
+------------------------------------------------------------------------
+[WEAK]
+Here are the action items from the meeting:
+1. David to provide technical architecture draft by August 1
+2. Maria to share initial wireframes by July 31
+3. Sarah to schedule weekly sync starting July 
+
+[STRONG]
+{"meeting_date": "2026-07-24", "project": "Project Phoenix", "attendees": [{"name": "Sarah Chen", "role": "PM"}, {"name": "David Okafor", "role": "Engineering Lead"}, {"name": "Maria Santos", "role": 
+
+Check: {'weak_is_valid_json': False, 'strong_has_full_schema': True, 'demonstrates_fix': True}
+Fix demonstrated: yes
+
+========================================================================
+5/5 exercises show the weak-to-strong fix working as designed.
+
+Every failure here has the same shape: the weak prompt left something
+unspecified — structure, format, grounding, a limit, a schema — and the
+model filled the gap with its own judgment. The strong prompt did not
+make the model smarter. It removed the gap.

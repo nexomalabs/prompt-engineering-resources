@@ -1,0 +1,19 @@
+{
+  "request": {
+    "max_tokens": 1500,
+    "messages": [
+      {
+        "content": "A train leaves Chicago at 9:00 AM traveling toward New York at 60 mph. A second train leaves New York at 10:00 AM traveling toward Chicago at 80 mph. The cities are 790 miles apart. At what time do the two trains meet? Give your answer as a specific time (e.g., 3:13 PM).",
+        "role": "user"
+      }
+    ],
+    "model": "o1-mini"
+  },
+  "response": {
+    "completion_tokens": 1118,
+    "content": "Setting up the problem: Train A travels alone from 9:00 to 10:00 AM, covering 60 miles. At 10:00 AM the remaining gap is 790 - 60 = 730 miles, closing at 60 + 80 = 140 mph. 730 / 140 = 5.2142857 hours, which is 5 hours and 12.857 minutes, i.e. approximately 5 hours 13 minutes. Adding this to 10:00 AM gives 3:13 PM. Checking: Train A total distance = 60 * 6.2142857 = 372.857 miles, Train B total distance = 80 * 5.2142857 = 417.143 miles, sum = 790.0 miles, which matches. The trains meet at 3:13 PM.",
+    "prompt_tokens": 89,
+    "reasoning_tokens": 984,
+    "total_tokens": 1207
+  }
+}

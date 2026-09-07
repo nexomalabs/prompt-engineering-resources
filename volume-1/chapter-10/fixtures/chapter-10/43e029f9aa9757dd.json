@@ -1,0 +1,19 @@
+{
+  "request": {
+    "max_tokens": 600,
+    "messages": [
+      {
+        "content": "Write a product description for an AI-powered note-taking app.",
+        "role": "user"
+      }
+    ],
+    "model": "gpt-4o-mini",
+    "temperature": 0.0
+  },
+  "response": {
+    "completion_tokens": 103,
+    "content": "Notely: Your Second Brain, Powered by AI\n\nMeet Notely, the AI-powered note-taking app that transforms how you capture and organize ideas. With intelligent transcription, automatic tagging, and smart search that understands context and meaning, Notely helps you find exactly what you need in seconds, whether you're in a meeting, studying for an exam, or brainstorming your next big idea. Download Notely today from the App Store or Google Play and never lose an important thought again.",
+    "prompt_tokens": 22,
+    "total_tokens": 125
+  }
+}

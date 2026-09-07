@@ -1,0 +1,23 @@
+{
+  "request": {
+    "max_tokens": 600,
+    "messages": [
+      {
+        "content": "What is the cheapest plan with API access?",
+        "role": "system"
+      },
+      {
+        "content": "What is the cheapest plan that includes API access and what does it cost?",
+        "role": "user"
+      }
+    ],
+    "model": "gpt-4o-mini",
+    "temperature": 0.0
+  },
+  "response": {
+    "completion_tokens": 38,
+    "content": "The cheapest plan with API access is typically the Standard plan, priced around $12.99 per month, which usually includes 250 GB of storage and basic API rate limits.",
+    "prompt_tokens": 38,
+    "total_tokens": 76
+  }
+}

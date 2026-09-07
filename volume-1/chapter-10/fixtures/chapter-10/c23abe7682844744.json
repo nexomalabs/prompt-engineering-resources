@@ -1,0 +1,23 @@
+{
+  "request": {
+    "max_tokens": 600,
+    "messages": [
+      {
+        "content": "Summarize this.",
+        "role": "system"
+      },
+      {
+        "content": "The Q2 revenue for Nexoma Labs was $4.2M, up 18% year-over-year. Operating expenses were $3.1M, driven primarily by R&D ($1.8M) and sales and marketing ($0.9M). Net income was $1.1M, compared to $0.6M in Q2 of last year. Cash on hand is $6.4M. Headcount grew from 42 to 51.",
+        "role": "user"
+      }
+    ],
+    "model": "gpt-4o-mini",
+    "temperature": 0.0
+  },
+  "response": {
+    "completion_tokens": 54,
+    "content": "Nexoma Labs had a strong second quarter. Revenue and net income were both up compared to last year, expenses grew mainly due to R&D and marketing spending, and the company added several new employees while maintaining a healthy cash position.",
+    "prompt_tokens": 75,
+    "total_tokens": 129
+  }
+}
