@@ -20,9 +20,7 @@ import pathlib
 def lab_mode() -> str:
     mode = os.environ.get("NEXOMA_LAB_MODE", "fixture").lower()
     if mode not in {"fixture", "record", "live"}:
-        raise ValueError(
-            f"NEXOMA_LAB_MODE must be fixture, record or live (got {mode!r})"
-        )
+        raise ValueError(f"NEXOMA_LAB_MODE must be fixture, record or live (got {mode!r})")
     return mode
 
 
@@ -61,8 +59,7 @@ class FixtureStore:
         self.dir.mkdir(parents=True, exist_ok=True)
         p = self.path(request)
         p.write_text(
-            json.dumps({"request": request, "response": response}, indent=2, sort_keys=True)
-            + "\n",
+            json.dumps({"request": request, "response": response}, indent=2, sort_keys=True) + "\n",
             encoding="utf-8",
         )
         return p

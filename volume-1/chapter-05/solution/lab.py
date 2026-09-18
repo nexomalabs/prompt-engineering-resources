@@ -27,10 +27,10 @@ _FP = dict(divide="ignore", over="ignore", invalid="ignore")
 # Classic hand-designed kernels. A trained CNN learns kernels like these in its
 # first layer rather than being given them.
 KERNELS = {
-    "vertical edge":   np.array([[-1.0, 0.0, 1.0]] * 3),
+    "vertical edge": np.array([[-1.0, 0.0, 1.0]] * 3),
     "horizontal edge": np.array([[-1.0, -1.0, -1.0], [0.0, 0.0, 0.0], [1.0, 1.0, 1.0]]),
-    "blur":            np.ones((3, 3)) / 9.0,
-    "sharpen":         np.array([[0.0, -1.0, 0.0], [-1.0, 5.0, -1.0], [0.0, -1.0, 0.0]]),
+    "blur": np.ones((3, 3)) / 9.0,
+    "sharpen": np.array([[0.0, -1.0, 0.0], [-1.0, 5.0, -1.0], [0.0, -1.0, 0.0]]),
 }
 
 
@@ -103,14 +103,14 @@ def shifted_dataset(images: np.ndarray, canvas: int = 12, seed: int = SEED):
     margin = canvas - images.shape[1]
     out = np.zeros((len(images), canvas, canvas))
     for i, im in enumerate(images):
-        out[i] = place_on_canvas(im, canvas, rng.integers(0, margin + 1), rng.integers(0, margin + 1))
+        out[i] = place_on_canvas(
+            im, canvas, rng.integers(0, margin + 1), rng.integers(0, margin + 1)
+        )
     return out
 
 
 def evaluate(X: np.ndarray, y: np.ndarray) -> float:
-    X_tr, X_te, y_tr, y_te = train_test_split(
-        X, y, test_size=0.25, random_state=SEED, stratify=y
-    )
+    X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.25, random_state=SEED, stratify=y)
     # Standardise before fitting. Unscaled features make lbfgs converge slowly
     # or not at all, and the resulting comparison would measure the optimiser
     # rather than the features.
@@ -156,15 +156,20 @@ def main() -> int:
     def verdict(lead: float) -> str:
         if abs(lead) < 0.02:
             return "the two are within noise of each other"
-        return f"convolutional features lead by {lead:+.3f}" if lead > 0 else \
-               f"raw pixels lead by {-lead:+.3f}"
+        return (
+            f"convolutional features lead by {lead:+.3f}"
+            if lead > 0
+            else f"raw pixels lead by {-lead:+.3f}"
+        )
 
     print(f"Centred digits: {verdict(lead_c)}.")
     print("  The digits never move, so a pixel index is already a reliable feature.")
     print("  Convolution has little to add when position is fixed.")
     print()
     print(f"Shifted digits: {verdict(lead_s)}.")
-    print(f"  Raw pixels fall by {ra_c - ra_s:.3f}; convolutional features fall by {ca_c - ca_s:.3f}.")
+    print(
+        f"  Raw pixels fall by {ra_c - ra_s:.3f}; convolutional features fall by {ca_c - ca_s:.3f}."
+    )
     print()
     print("That difference is what convolution buys. The same kernel is applied at")
     print("every position and pooling discards exactly where it fired, so the")

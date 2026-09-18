@@ -15,7 +15,6 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "data"))
 from make_dataset import SEED, make_spirals, train_test_split  # noqa: E402
 
-
 # Some numpy/BLAS builds raise spurious divide-by-zero, overflow and invalid
 # flags on ordinary matmuls; a plain random A @ B triggers them on numpy 2.0.2
 # under Accelerate. Silencing them here would hide a genuine blow-up too, so
@@ -105,7 +104,7 @@ class TwoLayerNet:
             dW2 = a1.T @ dz2
             db2 = dz2.sum(axis=0)
             da1 = dz2 @ self.W2.T
-            dz1 = da1 * (z1 > 0)      # ReLU passes gradient only where it was active
+            dz1 = da1 * (z1 > 0)  # ReLU passes gradient only where it was active
             dW1 = X.T @ dz1
             db1 = dz1.sum(axis=0)
         return dW1, db1, dW2, db2

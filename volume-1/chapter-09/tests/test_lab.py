@@ -17,7 +17,11 @@ sys.path.insert(0, str(ROOT.parent / "shared"))
 os.environ.setdefault("NEXOMA_LAB_MODE", "fixture")
 
 from lab import (  # noqa: E402
-    FIXTURES_DIR, MODEL_STANDARD, PROBLEMS, call_reasoning, call_standard,
+    FIXTURES_DIR,
+    MODEL_STANDARD,
+    PROBLEMS,
+    call_reasoning,
+    call_standard,
     check_accuracy,
 )
 from nexoma_labs.client import LabClient  # noqa: E402

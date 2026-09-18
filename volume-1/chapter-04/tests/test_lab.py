@@ -13,7 +13,13 @@ sys.path.insert(0, str(ROOT / "data"))
 sys.path.insert(0, str(ROOT / "solution"))
 
 from lab import (  # noqa: E402
-    LinearModel, TwoLayerNet, accuracy, cross_entropy, relu, softmax, train,
+    LinearModel,
+    TwoLayerNet,
+    accuracy,
+    cross_entropy,
+    relu,
+    softmax,
+    train,
 )
 from make_dataset import make_spirals, train_test_split  # noqa: E402
 

@@ -12,8 +12,16 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "solution"))
 
 from lab import (  # noqa: E402
-    SENTENCE, causal_mask, demo_scaling, entropy, heatmap, multi_head_attention,
-    positional_encoding, scaled_dot_product_attention, softmax, token_embeddings,
+    SENTENCE,
+    causal_mask,
+    demo_scaling,
+    entropy,
+    heatmap,
+    multi_head_attention,
+    positional_encoding,
+    scaled_dot_product_attention,
+    softmax,
+    token_embeddings,
 )
 
 
@@ -88,7 +96,7 @@ class TestScaling:
         """The reason for the sqrt(d_k) divisor, measured rather than asserted."""
         scaled, unscaled = demo_scaling(d_k=64)
         assert entropy(scaled) > entropy(unscaled) * 3
-        assert unscaled.max() > 0.99   # saturated to one-hot
+        assert unscaled.max() > 0.99  # saturated to one-hot
         assert scaled.max() < 0.95
 
     def test_scaling_is_irrelevant_at_low_dimension(self):

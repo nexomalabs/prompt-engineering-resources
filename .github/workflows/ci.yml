@@ -17,10 +17,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
+      # ruff is pinned and the rule set fixed in ruff.toml. An unpinned linter
+      # turns CI red on an upstream release with no change to the code, which
+      # is exactly what happened on this repository's first run.
       - name: Lint and format check
         run: |
-          uvx ruff check .
-          uvx ruff format --check .
+          uvx ruff@0.16.8 check .
+          uvx ruff@0.16.8 format --check .
       - name: Guard against committed secrets
         run: |
           if find . -name ".env" -not -name ".env.example" | grep -q .; then

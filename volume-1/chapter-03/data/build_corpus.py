@@ -16,7 +16,8 @@ Design note, and the reason this file is worth reading:
 
 Sections do NOT have exclusive vocabularies. Every topic draws from the same word
 pool and differs only in how *often* it uses each word. That is how real text
-behaves, and it is what makes the task learnable but not trivial. Two earlier versions of this generator were discarded. The first gave each
+behaves, and it is what makes the task learnable but not trivial. Two earlier
+versions of this generator were discarded. The first gave each
 section private vocabulary and classified at 100%. The second shared vocabulary
 but used 18–34 word documents and still reached 99.3%. Both produced an almost
 empty confusion matrix, which teaches nothing about precision, recall, or the
@@ -40,13 +41,13 @@ VOCAB = """team season injury recovery therapy treatment patient clinic panel re
 # The heavy sets overlap deliberately: injury/recovery/therapy serve both sport
 # and medicine; panel/review/policy serve both medicine and politics.
 HEAVY = {
-    "sports":   "team season injury recovery penalty training contract schedule performance".split(),
-    "health":   "patient therapy treatment clinic injury recovery referral screening trial".split(),
+    "sports": "team season injury recovery penalty training contract schedule performance".split(),
+    "health": "patient therapy treatment clinic injury recovery referral screening trial".split(),
     "politics": "policy vote committee reform debate ruling budget panel appeal".split(),
 }
 MEDIUM = {
-    "sports":   "staff facility record result defence support coverage".split(),
-    "health":   "evidence study case assessment guideline standard outcome".split(),
+    "sports": "staff facility record result defence support coverage".split(),
+    "health": "evidence study case assessment guideline standard outcome".split(),
     "politics": "statement inquiry measure access rate official decision".split(),
 }
 

@@ -26,7 +26,11 @@ FIXTURES_DIR = Path(__file__).resolve().parent.parent / "fixtures" / "chapter-10
 def call(client: LabClient, system: str, user: str = "") -> str:
     """Send a system+user pair, or just `system` alone as a user message if
     `user` is empty — matching how the chapter's own lab code is structured."""
-    messages = [Message("user", system)] if not user else [Message("system", system), Message("user", user)]
+    messages = (
+        [Message("user", system)]
+        if not user
+        else [Message("system", system), Message("user", user)]
+    )
     return client.complete(messages, temperature=0.0, max_tokens=600).content
 
 
@@ -66,14 +70,19 @@ def sentence_count(text: str) -> int:
 
 def check_ex1(weak: str, strong: str) -> dict:
     strong_ok = sentence_count(strong) == 3 and "$4.2M" in strong and "$1.1M" in strong
-    return {"weak_sentences": sentence_count(weak), "strong_sentences": sentence_count(strong),
-            "demonstrates_fix": strong_ok}
+    return {
+        "weak_sentences": sentence_count(weak),
+        "strong_sentences": sentence_count(strong),
+        "demonstrates_fix": strong_ok,
+    }
 
 
 # ─────────────────────────────────────────────────────────────────────
 # Exercise 2: Format — Intent Classification (JSON)
 # ─────────────────────────────────────────────────────────────────────
-EX2_USER = "My invoice from last month has the wrong address and I need it corrected before I can pay."
+EX2_USER = (
+    "My invoice from last month has the wrong address and I need it corrected before I can pay."
+)
 EX2_WEAK = "Classify the intent of the user message."
 EX2_STRONG = (
     "You are an intent classification API. Classify the user's message and return ONLY "
@@ -95,8 +104,11 @@ def is_valid_json(text: str) -> bool:
 
 def check_ex2(weak: str, strong: str) -> dict:
     weak_ok, strong_ok = is_valid_json(weak), is_valid_json(strong)
-    return {"weak_is_valid_json": weak_ok, "strong_is_valid_json": strong_ok,
-            "demonstrates_fix": (not weak_ok) and strong_ok}
+    return {
+        "weak_is_valid_json": weak_ok,
+        "strong_is_valid_json": strong_ok,
+        "demonstrates_fix": (not weak_ok) and strong_ok,
+    }
 
 
 # ─────────────────────────────────────────────────────────────────────
@@ -122,9 +134,11 @@ EX3_STRONG = (
 def check_ex3(weak: str, strong: str) -> dict:
     strong_grounded = "professional" in strong.lower() and "$20" in strong
     weak_ungrounded = "professional" not in weak.lower() or "$20" not in weak
-    return {"strong_is_grounded_in_document": strong_grounded,
-            "weak_did_not_happen_to_match_the_real_answer": weak_ungrounded,
-            "demonstrates_fix": strong_grounded and weak_ungrounded}
+    return {
+        "strong_is_grounded_in_document": strong_grounded,
+        "weak_did_not_happen_to_match_the_real_answer": weak_ungrounded,
+        "demonstrates_fix": strong_grounded and weak_ungrounded,
+    }
 
 
 # ─────────────────────────────────────────────────────────────────────
@@ -145,9 +159,13 @@ EX4_STRONG = (
 def check_ex4(weak: str, strong: str) -> dict:
     weak_words, strong_words = len(weak.split()), len(strong.split())
     within, exceeds = strong_words <= 40, weak_words > 40
-    return {"weak_word_count": weak_words, "strong_word_count": strong_words,
-            "strong_within_limit": within, "weak_exceeds_limit": exceeds,
-            "demonstrates_fix": within and exceeds}
+    return {
+        "weak_word_count": weak_words,
+        "strong_word_count": strong_words,
+        "strong_within_limit": within,
+        "weak_exceeds_limit": exceeds,
+        "demonstrates_fix": within and exceeds,
+    }
 
 
 # ─────────────────────────────────────────────────────────────────────
@@ -191,16 +209,43 @@ def check_ex5(weak: str, strong: str) -> dict:
     except json.JSONDecodeError:
         strong_ok = False
     weak_is_json = is_valid_json(weak)
-    return {"weak_is_valid_json": weak_is_json, "strong_has_full_schema": strong_ok,
-            "demonstrates_fix": strong_ok and not weak_is_json}
+    return {
+        "weak_is_valid_json": weak_is_json,
+        "strong_has_full_schema": strong_ok,
+        "demonstrates_fix": strong_ok and not weak_is_json,
+    }
 
 
 EXERCISES = [
     ("Exercise 1: Ambiguity — Document Summarization", EX1_WEAK, EX1_STRONG, EX1_DOC, check_ex1),
-    ("Exercise 2: Format — Intent Classification (JSON)", EX2_WEAK, EX2_STRONG, EX2_USER, check_ex2),
-    ("Exercise 3: Hallucination — Document-Grounded Q&A", EX3_WEAK, EX3_STRONG, EX3_USER, check_ex3),
-    ("Exercise 4: Constraint Violation — Length-Limited Description", EX4_WEAK, EX4_STRONG, "", check_ex4),
-    ("Exercise 5: Structured Extraction — Meeting Notes", EX5_WEAK, EX5_STRONG, EX5_TEXT, check_ex5),
+    (
+        "Exercise 2: Format — Intent Classification (JSON)",
+        EX2_WEAK,
+        EX2_STRONG,
+        EX2_USER,
+        check_ex2,
+    ),
+    (
+        "Exercise 3: Hallucination — Document-Grounded Q&A",
+        EX3_WEAK,
+        EX3_STRONG,
+        EX3_USER,
+        check_ex3,
+    ),
+    (
+        "Exercise 4: Constraint Violation — Length-Limited Description",
+        EX4_WEAK,
+        EX4_STRONG,
+        "",
+        check_ex4,
+    ),
+    (
+        "Exercise 5: Structured Extraction — Meeting Notes",
+        EX5_WEAK,
+        EX5_STRONG,
+        EX5_TEXT,
+        check_ex5,
+    ),
 ]
 
 

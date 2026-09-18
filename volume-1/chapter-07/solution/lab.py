@@ -128,7 +128,7 @@ def main() -> int:
     print()
 
     merges, vocab = train_bpe(CORPUS, 40)
-    print(f"First 12 merges learned (most frequent pair first):")
+    print("First 12 merges learned (most frequent pair first):")
     for i, (a, b) in enumerate(merges[:12], 1):
         print(f"  {i:>2}. {a!r} + {b!r} -> {a + b!r}")
     print()
@@ -162,11 +162,12 @@ def main() -> int:
     print(ledger.report())
     print()
     cheap, dear = ledger.calls
-    print(f"Same {CHARS:,} characters. {dear.label} costs "
-          f"{dear.cost / cheap.cost:.1f}x more than {cheap.label},")
+    print(
+        f"Same {CHARS:,} characters. {dear.label} costs "
+        f"{dear.cost / cheap.cost:.1f}x more than {cheap.label},"
+    )
     print(f"because it needs {dear.input_tokens / cheap.input_tokens:.1f}x the tokens to say it.")
-    print(f"At 50,000 calls a day the difference is "
-          f"${(dear.cost - cheap.cost) * 50_000:,.0f}.")
+    print(f"At 50,000 calls a day the difference is ${(dear.cost - cheap.cost) * 50_000:,.0f}.")
     print()
     print("Token count is not a detail. It is the unit you are billed in, and")
     print("it depends on what the tokenizer was trained on rather than on how")

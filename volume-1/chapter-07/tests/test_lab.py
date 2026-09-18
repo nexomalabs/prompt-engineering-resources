@@ -11,8 +11,16 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "solution"))
 
 from lab import (  # noqa: E402
-    CORPUS, END, SAMPLES, count_pairs, decode, encode, encode_word,
-    merge_pair, train_bpe, word_frequencies,
+    CORPUS,
+    END,
+    SAMPLES,
+    count_pairs,
+    decode,
+    encode,
+    encode_word,
+    merge_pair,
+    train_bpe,
+    word_frequencies,
 )
 
 
@@ -104,12 +112,15 @@ class TestEncoding:
 
 
 class TestRoundTrip:
-    @pytest.mark.parametrize("text", [
-        "the engineer designs the system",
-        "quixotic zephyr",
-        "a",
-        "design design design",
-    ])
+    @pytest.mark.parametrize(
+        "text",
+        [
+            "the engineer designs the system",
+            "quixotic zephyr",
+            "a",
+            "design design design",
+        ],
+    )
     def test_decode_inverts_encode(self, trained, text):
         merges, _ = trained
         assert decode(encode(text, merges)) == text

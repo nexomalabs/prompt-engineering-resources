@@ -25,7 +25,11 @@ FIXTURES_DIR = Path(__file__).resolve().parent.parent / "fixtures" / "chapter-10
 
 
 def call(client: LabClient, system: str, user: str = "") -> str:
-    messages = [Message("user", system)] if not user else [Message("system", system), Message("user", user)]
+    messages = (
+        [Message("user", system)]
+        if not user
+        else [Message("system", system), Message("user", user)]
+    )
     return client.complete(messages, temperature=0.0, max_tokens=600).content
 
 
@@ -78,7 +82,9 @@ def check_ex1(weak: str, strong: str) -> dict:
 # ─────────────────────────────────────────────────────────────────────
 # Exercise 2: Format — Intent Classification (JSON)
 # ─────────────────────────────────────────────────────────────────────
-EX2_USER = "My invoice from last month has the wrong address and I need it corrected before I can pay."
+EX2_USER = (
+    "My invoice from last month has the wrong address and I need it corrected before I can pay."
+)
 EX2_WEAK = "Classify the intent of the user message."
 EX2_STRONG = (
     "You are an intent classification API. Classify the user's message and return ONLY "
@@ -184,10 +190,34 @@ def check_ex5(weak: str, strong: str) -> dict:
 
 EXERCISES = [
     ("Exercise 1: Ambiguity — Document Summarization", EX1_WEAK, EX1_STRONG, EX1_DOC, check_ex1),
-    ("Exercise 2: Format — Intent Classification (JSON)", EX2_WEAK, EX2_STRONG, EX2_USER, check_ex2),
-    ("Exercise 3: Hallucination — Document-Grounded Q&A", EX3_WEAK, EX3_STRONG, EX3_USER, check_ex3),
-    ("Exercise 4: Constraint Violation — Length-Limited Description", EX4_WEAK, EX4_STRONG, "", check_ex4),
-    ("Exercise 5: Structured Extraction — Meeting Notes", EX5_WEAK, EX5_STRONG, EX5_TEXT, check_ex5),
+    (
+        "Exercise 2: Format — Intent Classification (JSON)",
+        EX2_WEAK,
+        EX2_STRONG,
+        EX2_USER,
+        check_ex2,
+    ),
+    (
+        "Exercise 3: Hallucination — Document-Grounded Q&A",
+        EX3_WEAK,
+        EX3_STRONG,
+        EX3_USER,
+        check_ex3,
+    ),
+    (
+        "Exercise 4: Constraint Violation — Length-Limited Description",
+        EX4_WEAK,
+        EX4_STRONG,
+        "",
+        check_ex4,
+    ),
+    (
+        "Exercise 5: Structured Extraction — Meeting Notes",
+        EX5_WEAK,
+        EX5_STRONG,
+        EX5_TEXT,
+        check_ex5,
+    ),
 ]
 
 

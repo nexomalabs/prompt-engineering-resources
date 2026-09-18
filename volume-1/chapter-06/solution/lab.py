@@ -84,8 +84,9 @@ def heatmap(weights, tokens, width=6) -> str:
     shades = " .:-=+*#%@"
     lines = [" " * (width + 1) + "".join(f"{t[:width]:>{width}}" for t in tokens)]
     for i, row in enumerate(weights):
-        cells = "".join(f"{shades[min(int(v * len(shades)), len(shades) - 1)] * 2:>{width}}"
-                        for v in row)
+        cells = "".join(
+            f"{shades[min(int(v * len(shades)), len(shades) - 1)] * 2:>{width}}" for v in row
+        )
         lines.append(f"{tokens[i][:width]:>{width}} {cells}")
     return "\n".join(lines)
 
@@ -161,8 +162,12 @@ def main() -> int:
     print("Why divide by sqrt(d_k)")
     print("=" * 62)
     scaled, unscaled = demo_scaling()
-    print(f"  scaled    mean row entropy {entropy(scaled):.3f} bits   max weight {scaled.max():.3f}")
-    print(f"  unscaled  mean row entropy {entropy(unscaled):.3f} bits   max weight {unscaled.max():.3f}")
+    print(
+        f"  scaled    mean row entropy {entropy(scaled):.3f} bits   max weight {scaled.max():.3f}"
+    )
+    print(
+        f"  unscaled  mean row entropy {entropy(unscaled):.3f} bits   max weight {unscaled.max():.3f}"  # noqa: E501 — column alignment
+    )
     print()
     print("At d_k = 64 the unscaled dot products are large, softmax saturates")
     print("towards one-hot, and the gradient through it nearly vanishes. Scaling")
