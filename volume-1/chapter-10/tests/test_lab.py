@@ -17,10 +17,30 @@ sys.path.insert(0, str(ROOT.parent / "shared"))
 os.environ.setdefault("NEXOMA_LAB_MODE", "fixture")
 
 from lab import (  # noqa: E402
-    EX1_DOC, EX1_STRONG, EX1_WEAK, EX2_STRONG, EX2_USER, EX2_WEAK,
-    EX3_STRONG, EX3_USER, EX3_WEAK, EX4_STRONG, EX4_WEAK, EX5_STRONG,
-    EX5_TEXT, EX5_WEAK, EXERCISES, FIXTURES_DIR, MODEL, call, check_ex1,
-    check_ex2, check_ex3, check_ex4, check_ex5, is_valid_json,
+    EX1_DOC,
+    EX1_STRONG,
+    EX1_WEAK,
+    EX2_STRONG,
+    EX2_USER,
+    EX2_WEAK,
+    EX3_STRONG,
+    EX3_USER,
+    EX3_WEAK,
+    EX4_STRONG,
+    EX4_WEAK,
+    EX5_STRONG,
+    EX5_TEXT,
+    EX5_WEAK,
+    EXERCISES,
+    FIXTURES_DIR,
+    MODEL,
+    call,
+    check_ex1,
+    check_ex2,
+    check_ex3,
+    check_ex4,
+    check_ex5,
+    is_valid_json,
     sentence_count,
 )
 from nexoma_labs.client import LabClient  # noqa: E402
@@ -81,9 +101,7 @@ class TestExerciseChecks:
         assert not check_ex4("word " * 30, "word " * 30)["demonstrates_fix"]
 
     def test_ex5_requires_full_schema_and_weak_non_json(self):
-        strong = (
-            '{"action_items": [1,2,3], "attendees": [1,2,3], "decisions": ["a"]}'
-        )
+        strong = '{"action_items": [1,2,3], "attendees": [1,2,3], "decisions": ["a"]}'
         assert check_ex5("a bulleted list", strong)["demonstrates_fix"]
 
 

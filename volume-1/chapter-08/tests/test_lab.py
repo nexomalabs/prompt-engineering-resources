@@ -17,8 +17,14 @@ sys.path.insert(0, str(ROOT.parent / "shared"))
 os.environ.setdefault("NEXOMA_LAB_MODE", "fixture")
 
 from lab import (  # noqa: E402
-    FIXTURES_DIR, MODEL, PROMPT, SAMPLES_PER_TEMPERATURE, TEMPERATURES,
-    cross_sample_diversity, distinct_count, run_experiment,
+    FIXTURES_DIR,
+    MODEL,
+    PROMPT,
+    SAMPLES_PER_TEMPERATURE,
+    TEMPERATURES,
+    cross_sample_diversity,
+    distinct_count,
+    run_experiment,
 )
 from nexoma_labs.client import LabClient  # noqa: E402
 
@@ -62,10 +68,12 @@ class TestFixtureReplay:
     def test_replay_is_exact_and_repeatable(self):
         """Fixture mode must return the same content on every run."""
         client = LabClient(FIXTURES_DIR, MODEL)
-        first = [client.ask(PROMPT, temperature=0.7, max_tokens=100, seed=i).content
-                 for i in range(5)]
-        second = [client.ask(PROMPT, temperature=0.7, max_tokens=100, seed=i).content
-                  for i in range(5)]
+        first = [
+            client.ask(PROMPT, temperature=0.7, max_tokens=100, seed=i).content for i in range(5)
+        ]
+        second = [
+            client.ask(PROMPT, temperature=0.7, max_tokens=100, seed=i).content for i in range(5)
+        ]
         assert first == second
 
 

@@ -80,8 +80,12 @@ def top_features(result, k=5):
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--dataset", choices=["bundled", "newsgroups"], default="bundled",
-                    help="'newsgroups' downloads ~14 MB on first run")
+    ap.add_argument(
+        "--dataset",
+        choices=["bundled", "newsgroups"],
+        default="bundled",
+        help="'newsgroups' downloads ~14 MB on first run",
+    )
     a = ap.parse_args()
 
     texts, labels, names = load(a.dataset)

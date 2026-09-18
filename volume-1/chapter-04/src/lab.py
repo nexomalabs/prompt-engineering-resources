@@ -93,7 +93,9 @@ def train(model, X, y, epochs=400, lr=0.5, log_every=100, verbose=True):
         probs, cache = model.forward(X)
         loss = cross_entropy(probs, y)
         if not np.isfinite(loss):
-            raise FloatingPointError(f"loss became {loss} at epoch {epoch}; lower the learning rate")
+            raise FloatingPointError(
+                f"loss became {loss} at epoch {epoch}; lower the learning rate"
+            )
         model.step(model.backward(cache, probs, y), lr)
         history.append(loss)
         if verbose and (epoch % log_every == 0 or epoch == 1):

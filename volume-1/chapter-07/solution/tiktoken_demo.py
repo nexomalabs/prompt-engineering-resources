@@ -17,7 +17,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from lab import SAMPLES, CORPUS, encode, train_bpe  # noqa: E402
+from lab import CORPUS, SAMPLES, encode, train_bpe  # noqa: E402
 
 
 def main() -> int:
@@ -31,7 +31,9 @@ def main() -> int:
     enc = tiktoken.get_encoding("cl100k_base")
     merges, vocab = train_bpe(CORPUS, 40)
 
-    print(f"Ours:       {len(vocab):>7,} vocabulary, {len(merges)} merges, trained on {len(CORPUS)} words")
+    print(
+        f"Ours:       {len(vocab):>7,} vocabulary, {len(merges)} merges, trained on {len(CORPUS)} words"  # noqa: E501 — column alignment
+    )
     print(f"cl100k_base:{enc.n_vocab:>7,} vocabulary, trained on a large web corpus")
     print()
 

@@ -74,8 +74,11 @@ def call_standard(client: LabClient, problem: str, chain_of_thought: bool):
 
 
 def call_reasoning(client: LabClient, problem: str) -> dict:
-    request = {"model": MODEL_REASONING, "messages": [{"role": "user", "content": problem}],
-               "max_tokens": 1500}
+    request = {
+        "model": MODEL_REASONING,
+        "messages": [{"role": "user", "content": problem}],
+        "max_tokens": 1500,
+    }
 
     def call_live(req: dict) -> dict:
         raise NotImplementedError("record mode not implemented in the starter")

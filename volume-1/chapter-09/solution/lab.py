@@ -140,8 +140,10 @@ def main() -> int:
         tally["reasoning"] += ok
         print(f"\n[3] {MODEL_REASONING} | reasoning")
         print(f"    {reasoning['content'][:160]}...")
-        print(f"    correct={ok}  reasoning_tokens={reasoning['reasoning_tokens']}"
-              f"  total_tokens={reasoning['total_tokens']}")
+        print(
+            f"    correct={ok}  reasoning_tokens={reasoning['reasoning_tokens']}"
+            f"  total_tokens={reasoning['total_tokens']}"
+        )
 
     print(f"\n{'=' * 72}")
     print(f"Accuracy over {len(PROBLEMS)} problems:")

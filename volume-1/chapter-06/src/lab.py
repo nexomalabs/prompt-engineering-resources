@@ -60,8 +60,9 @@ def heatmap(weights, tokens, width=6) -> str:
     shades = " .:-=+*#%@"
     lines = [" " * (width + 1) + "".join(f"{t[:width]:>{width}}" for t in tokens)]
     for i, row in enumerate(weights):
-        cells = "".join(f"{shades[min(int(v * len(shades)), len(shades) - 1)] * 2:>{width}}"
-                        for v in row)
+        cells = "".join(
+            f"{shades[min(int(v * len(shades)), len(shades) - 1)] * 2:>{width}}" for v in row
+        )
         lines.append(f"{tokens[i][:width]:>{width}} {cells}")
     return "\n".join(lines)
 

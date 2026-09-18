@@ -38,7 +38,9 @@ class TestFixtureStore(unittest.TestCase):
         self.assertEqual(a, b)
 
     def test_key_changes_with_request(self):
-        self.assertNotEqual(FixtureStore.key(self.req), FixtureStore.key({"model": "test", "prompt": "hi"}))
+        self.assertNotEqual(
+            FixtureStore.key(self.req), FixtureStore.key({"model": "test", "prompt": "hi"})
+        )
 
     def test_missing_fixture_fails_loudly(self):
         with self.assertRaises(FixtureMissing):

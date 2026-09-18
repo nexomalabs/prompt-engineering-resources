@@ -23,10 +23,10 @@ SEED = 20260904
 _FP = dict(divide="ignore", over="ignore", invalid="ignore")
 
 KERNELS = {
-    "vertical edge":   np.array([[-1.0, 0.0, 1.0]] * 3),
+    "vertical edge": np.array([[-1.0, 0.0, 1.0]] * 3),
     "horizontal edge": np.array([[-1.0, -1.0, -1.0], [0.0, 0.0, 0.0], [1.0, 1.0, 1.0]]),
-    "blur":            np.ones((3, 3)) / 9.0,
-    "sharpen":         np.array([[0.0, -1.0, 0.0], [-1.0, 5.0, -1.0], [0.0, -1.0, 0.0]]),
+    "blur": np.ones((3, 3)) / 9.0,
+    "sharpen": np.array([[0.0, -1.0, 0.0], [-1.0, 5.0, -1.0], [0.0, -1.0, 0.0]]),
 }
 
 
@@ -80,11 +80,11 @@ def extract_features(image: np.ndarray) -> np.ndarray:
 
 
 def evaluate(X: np.ndarray, y: np.ndarray) -> float:
-    X_tr, X_te, y_tr, y_te = train_test_split(
-        X, y, test_size=0.25, random_state=SEED, stratify=y
-    )
+    X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.25, random_state=SEED, stratify=y)
     with np.errstate(**_FP):
-        model = make_pipeline(StandardScaler(), LogisticRegression(max_iter=3000, random_state=SEED))
+        model = make_pipeline(
+            StandardScaler(), LogisticRegression(max_iter=3000, random_state=SEED)
+        )
         model.fit(X_tr, y_tr)
         return accuracy_score(y_te, model.predict(X_te))
 

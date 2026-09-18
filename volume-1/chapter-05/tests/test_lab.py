@@ -13,7 +13,13 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "solution"))
 
 from lab import (  # noqa: E402
-    KERNELS, convolve2d, evaluate, extract_features, max_pool, relu, shifted_dataset,
+    KERNELS,
+    convolve2d,
+    evaluate,
+    extract_features,
+    max_pool,
+    relu,
+    shifted_dataset,
 )
 
 

@@ -1,0 +1,27 @@
+# Lint configuration for the lab code in volumes/*/labs/.
+#
+# The rule set is selected explicitly rather than left to ruff's defaults.
+# Ruff's defaults have widened considerably between releases — 0.16 enables
+# YTT, ASYNC, S, BLE and B among others — so a CI job that does not pin both
+# the version and the rule set goes red on an upstream release with no change
+# to the code. That is what happened to the companion repository's first CI run.
+#
+# E, F and I are the core: pycodestyle errors, pyflakes, and import sorting.
+# They catch real defects — undefined names, unused imports, shadowed builtins —
+# without imposing opinions on teaching code that readers have to read.
+
+line-length = 100
+target-version = "py312"
+
+[lint]
+select = ["E", "F", "I"]
+
+[format]
+docstring-code-format = true
+
+[lint.per-file-ignores]
+# Starter files set up a variable and leave the reader to use it in the TODO
+# immediately below — `d_k` for the scaled-attention divisor, `n` for the
+# gradient denominator. Unused is the intended state until the reader fills
+# it in, so F841 is noise here rather than a finding.
+"*/src/lab.py" = ["F841"]

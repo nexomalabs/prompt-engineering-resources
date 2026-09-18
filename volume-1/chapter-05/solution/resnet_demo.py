@@ -45,12 +45,14 @@ def main() -> int:
     # The preprocessing must match what the network was trained on. Wrong
     # normalisation is a silent failure: the model still returns confident
     # predictions, they are just wrong.
-    preprocess = transforms.Compose([
-        transforms.Resize(256),
-        transforms.CenterCrop(224),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-    ])
+    preprocess = transforms.Compose(
+        [
+            transforms.Resize(256),
+            transforms.CenterCrop(224),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+        ]
+    )
 
     image = Image.open(a.image).convert("RGB")
     batch = preprocess(image).unsqueeze(0)  # add the batch dimension

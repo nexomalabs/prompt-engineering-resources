@@ -90,12 +90,16 @@ def main() -> int:
 
     print(f"\nAt temperature 0.0, all {SAMPLES_PER_TEMPERATURE} samples are ", end="")
     print("identical." if distinct_count(results[0.0]) == 1 else "NOT identical.")
-    print(f"At temperature {TEMPERATURES[-1]}, {distinct_count(results[TEMPERATURES[-1]])} "
-          f"of {SAMPLES_PER_TEMPERATURE} samples are distinct.")
+    print(
+        f"At temperature {TEMPERATURES[-1]}, {distinct_count(results[TEMPERATURES[-1]])} "
+        f"of {SAMPLES_PER_TEMPERATURE} samples are distinct."
+    )
 
     lo, hi = TEMPERATURES[0], TEMPERATURES[-1]
-    print(f"\nCross-sample diversity rises from {diversity[lo]:.3f} at T={lo} to "
-          f"{diversity[hi]:.3f} at T={hi}. Five samples is a small enough number that")
+    print(
+        f"\nCross-sample diversity rises from {diversity[lo]:.3f} at T={lo} to "
+        f"{diversity[hi]:.3f} at T={hi}. Five samples is a small enough number that"
+    )
     print("the trend is not perfectly monotonic — that variance is itself real and")
     print("worth noticing, not a flaw in the measurement.")
     print("Temperature does not change what the model knows. It changes how it")
