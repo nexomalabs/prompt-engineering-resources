@@ -1,0 +1,74 @@
+name: Labs CI
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 3 * * *"   # nightly — tier 3 live-API labs, main branch only
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static:
+    name: Lint and secret guard
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - name: Lint and format check
+        run: |
+          uvx ruff check .
+          uvx ruff format --check .
+      - name: Guard against committed secrets
+        run: |
+          if find . -name ".env" -not -name ".env.example" | grep -q .; then
+            echo "::error::a .env file is committed"; exit 1
+          fi
+
+  unit:
+    name: Tier 2 — recorded fixtures, no API key
+    runs-on: ubuntu-latest
+    needs: static
+    strategy:
+      fail-fast: false
+      matrix:
+        volume: [1]   # extend as volume-2/, volume-3/, volume-4/ ship
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - name: Run every lab's tests against its solution
+        env:
+          NEXOMA_LAB_MODE: fixture
+        run: |
+          shopt -s nullglob
+          failed=0
+          for lab in volume-${{ matrix.volume }}/chapter-*/; do
+            [ -d "$lab/tests" ] || continue
+            echo "::group::$lab"
+            (cd "$lab" && uv sync --quiet && uv run pytest -q) || failed=1
+            echo "::endgroup::"
+          done
+          exit $failed
+
+  live:
+    name: Tier 3 — live API (nightly, main only)
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    needs: unit
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - name: Run labs against the real API and diff expected output
+        env:
+          NEXOMA_LAB_MODE: live
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          shopt -s nullglob
+          failed=0
+          for lab in volume-*/chapter-*/; do
+            [ -d "$lab/tests" ] || continue
+            (cd "$lab" && uv sync --quiet && uv run pytest -q) || failed=1
+          done
+          exit $failed
